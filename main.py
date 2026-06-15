@@ -1,7 +1,10 @@
 #tpi programaciion
 import csv
+import os
 
-ARCHIVO_CSV = "paises.csv"
+# Obtener el directorio donde está el script
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+ARCHIVO_CSV = os.path.join(SCRIPT_DIR, "paises.csv")
 
 #funciones
 
@@ -295,6 +298,7 @@ def mostrar_menu_principal():
 
 def main():
     #Llamamos a la función para leer el archivo csv y obtener los paises
+
     paises = cargar_paises_desde_csv(ARCHIVO_CSV)
 
     if not paises:
