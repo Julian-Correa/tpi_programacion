@@ -1,22 +1,25 @@
 #tpi programaciion
+
+#importamos los modulos
 import csv
 import os
 
-# Obtener el directorio donde está el script
+# Obtener el directorio donde está el script de forma dinámica 
+#para evitar problemas de rutas
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ARCHIVO_CSV = os.path.join(SCRIPT_DIR, "paises.csv")
 
 #funciones
 
 def cargar_paises_desde_csv(nombre_archivo):
-    paises = []
+    paises = [] #Creamos una lista vacía para guardar los diccionarios
 
     try:
         #abrimos el archivo csv en modo lectura
         with open(nombre_archivo, mode="r", encoding="utf-8") as archivo:
             lector = csv.DictReader(archivo)
 
-            #guardamos la información de cada país por separado en el arreglo paises
+            #Convertimos cada fila del lector en un diccionario individual por país
             for fila in lector:
                 try:
                     pais = {
@@ -26,9 +29,9 @@ def cargar_paises_desde_csv(nombre_archivo):
                         "continente": fila["continente"].strip()
                     }
 
-                    #lo agregamos después de verificar que el país tenga nombre y continente
+                    #validamos que los campos importantes no estén vacíos
                     if pais["nombre"] and pais["continente"]:
-                        paises.append(pais)
+                        paises.append(pais) #Añadimos el diccionario del país al final de la lista paises
 
                 except (ValueError, KeyError):
                     print("\nError: se encontró una fila con formato inválido en el CSV.")
@@ -89,7 +92,7 @@ def agregar_pais(paises):
     poblacion = pedir_entero("Ingrese la población: ")
     superficie = pedir_entero("Ingrese la superficie en km²: ")
 
-    #guardamos los datos validados 
+    #guardamos los datos validados en un nuevo diccionario
     nuevo_pais = {
         "nombre": nombre,
         "poblacion": poblacion,
@@ -97,7 +100,7 @@ def agregar_pais(paises):
         "continente": continente
     }
 
-    #Agregamos el nuevo país al final del arreglo de paises.
+    #Agregamos el nuevo diccionario al final de la lista paises.
     paises.append(nuevo_pais)
     print("\nPaís agregado correctamente.")
 
@@ -124,11 +127,11 @@ def buscar_pais(paises):
         print("\nLa búsqueda no puede estar vacía.")
         return
 
-    #Creamos otro arreglo vacío para mostrar los resultados de la búsqueda
+    #Creamos otra lista vacía para mostrar los resultados de la búsqueda
     resultados = []
 
     for pais in paises:
-        #En caso de que alguna parte del nombre coincida con algún país lo agregamos en el arreglo nuevo
+        #En caso de que alguna parte del nombre ingresado coincida con algún país guardado, lo agregamos en la lista resultados
         if busqueda in pais["nombre"].lower():
             resultados.append(pais)
 
@@ -137,6 +140,7 @@ def buscar_pais(paises):
 
 def filtrar_por_continente(paises):
     continente = input("Ingrese el continente: ").strip().lower()
+
     #igual que buscar por pais pero en este caso por continente
     resultados = []
 
@@ -148,6 +152,7 @@ def filtrar_por_continente(paises):
 
 
 def filtrar_por_rango_poblacion(paises):
+
     #Guardamos los límites del rango
     minimo = pedir_entero("Población mínima: ")
     maximo = pedir_entero("Población máxima: ")
@@ -167,6 +172,7 @@ def filtrar_por_rango_poblacion(paises):
 
 
 def filtrar_por_rango_superficie(paises):
+
     #Guardamos los límites del rango 
     minimo = pedir_entero("Superficie mínima: ")
     maximo = pedir_entero("Superficie máxima: ")
@@ -309,7 +315,7 @@ def main():
         mostrar_menu_principal()
 
         #Según la opción elegida llamamos a la función correspondiente
-        opcion = input("Seleccione una opción: ")
+        opcion = input("\nSeleccione una opción: ")
 
         if opcion == "1": mostrar_lista_paises(paises)
         elif opcion == "2": agregar_pais(paises)
