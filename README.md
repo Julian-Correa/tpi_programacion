@@ -129,4 +129,4 @@ Link al video:
 
 Link al informe:
 
-[PEGAR AQUÍ EL ENLACE DEL PDF]
+https://docs.google.com/document/d/11Pakv8uQ7MDLrUc0R07dOpd6gdpfj7VW1YPuB3lbutk/edit?usp=sharing
