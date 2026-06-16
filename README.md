@@ -121,7 +121,7 @@ python main.py
 
 Link al video:
 
-[ ENLACE DEL VIDEO]
+https://www.youtube.com/watch?v=J4RMf-k-IeI
 
 ---
 
