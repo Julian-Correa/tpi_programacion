@@ -121,8 +121,7 @@ python main.py
 
 Link al video:
 
-https://www.youtube.com/watch?v=J4RMf-k-IeI
-
+https://drive.google.com/file/d/19qim-yDRcXYQc-gJSrkUkq7Rl244ykrU/view?pli=1
 ---
 
 ## Documentación PDF
